@@ -12,6 +12,6 @@
         fromScrollView:(UIScrollView *)scrollView
               withSize:(CGSize)size;
 + (CGFloat)minimumScaleFromSize:(CGSize)size toFitTargetSize:(CGSize)targetSize;
-
 + (UIImage *)cropImage:(UIImage *)image withRect:(CGRect)rect;
++ (UIImage *)cropImage:(UIImage *)image withRect:(CGRect)rect withScaledSize:(CGSize)scaledSize;
 @end
