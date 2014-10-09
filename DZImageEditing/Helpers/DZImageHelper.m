@@ -28,6 +28,14 @@
     return (widthScale > heightScale) ? widthScale : heightScale;
 }
 
++ (UIImage *)cropImage:(UIImage *)image withRect:(CGRect)rect
+{
+    CGImageRef imageRef = CGImageCreateWithImageInRect([image CGImage], rect);
+    UIImage *resultImage = [UIImage imageWithCGImage:imageRef scale:image.scale orientation:image.imageOrientation];
+    CGImageRelease(imageRef);
+    return resultImage;
+}
+
 #pragma mark - private
 
 + (UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)newSize
@@ -37,14 +45,6 @@
     UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     return newImage;
-}
-
-+ (UIImage *)cropImage:(UIImage *)image withRect:(CGRect)rect
-{
-    CGImageRef imageRef = CGImageCreateWithImageInRect([image CGImage], rect);
-    UIImage *resultImage = [UIImage imageWithCGImage:imageRef scale:image.scale orientation:image.imageOrientation];
-    CGImageRelease(imageRef);
-    return resultImage;
 }
 
 @end
